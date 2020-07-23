@@ -1,0 +1,22 @@
+{
+  "name": "vue-music-ts",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "better-scroll": "^1.15.2",
+    "good-storage": "^1.1.1",
+    "lyric-parser": "^1.0.1",
+    "vue": "^3.0.0-rc.4",
+    "vue-router": "4.0.0-beta.2",
+    "vuex": "4.0.0-beta.4"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-rc.4",
+    "stylus": "^0.54.8",
+    "typescript": "^3.9.7",
+    "vite": "^1.0.0-rc.3"
+  }
+}
