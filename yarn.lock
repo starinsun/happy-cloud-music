@@ -107,6 +107,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/better-scroll@^1.12.2":
+  version "1.12.2"
+  resolved "https://registry.npm.taobao.org/@types/better-scroll/download/@types/better-scroll-1.12.2.tgz#622136087cd0bcbd7eaea93812cd64fe4d15849d"
+  integrity sha1-YiE2CHzQvL1+rqk4Es1k/k0VhJ0=
+
 "@types/body-parser@*":
   version "1.19.0"
   resolved "https://registry.npm.taobao.org/@types/body-parser/download/@types/body-parser-1.19.0.tgz#0685b3c47eb3006ffed117cdd55164b61f80538f"

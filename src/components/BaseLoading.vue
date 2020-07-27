@@ -10,15 +10,17 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'Loading',
-})
-</script>>
+  name: "BaseLoading",
+});
+</script>
+>
 
- <style lang="stylus" scoped>
+<style lang="stylus" scoped>
 @import "../styles/var.styl"
+@import "../styles/mixin.styl"
 
 .wrap
   height 16px
@@ -28,7 +30,7 @@ export default defineComponent({
   font-size 14px
   >div
     display inline-block
-    background-color $color-theme
+    background-color $grey3
     height 100%
     width 2px
     margin-right 3px
