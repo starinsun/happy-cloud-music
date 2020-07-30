@@ -2139,7 +2139,7 @@ vue-router@4.0.0-beta.2:
 
 vue@^3.0.0-rc.1, vue@^3.0.0-rc.4:
   version "3.0.0-rc.4"
-  resolved "https://registry.npm.taobao.org/vue/download/vue-3.0.0-rc.4.tgz?cache=0&sync_timestamp=1595360543617&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue%2Fdownload%2Fvue-3.0.0-rc.4.tgz#f17b32914c8add7f4792d618eb4f1358ff4222e8"
+  resolved "https://registry.npm.taobao.org/vue/download/vue-3.0.0-rc.4.tgz#f17b32914c8add7f4792d618eb4f1358ff4222e8"
   integrity sha1-8XsykUyK3X9HktYY608TWP9CIug=
   dependencies:
     "@vue/compiler-dom" "3.0.0-rc.4"

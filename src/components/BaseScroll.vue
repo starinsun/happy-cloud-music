@@ -95,7 +95,7 @@ export default defineComponent({
       scroll.scrollToElement(el, time, offsetX, offsetY, easing);
     }
     function refresh() {
-      scroll.refresh();
+      scroll?.refresh();
     }
     return { wrapper, refresh, scrollTo, scrollToElement };
   },

@@ -1,7 +1,7 @@
 import { localFavor, localSearch } from "../utils/utils";
-import { IState } from "../utils/types";
+import { IState } from "../types/store.types";
 
-const state: IState= {
+const state: IState = {
   singer: {},
   songs: [],
   playing: false,
@@ -13,7 +13,7 @@ const state: IState= {
   disc: {},
   rank: {},
   history: localSearch(),
-  favor: localFavor()
+  favor: localFavor(),
 };
 
-export default state
+export default state;

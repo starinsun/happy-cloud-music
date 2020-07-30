@@ -20,7 +20,6 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 @import "../styles/var.styl"
-@import "../styles/mixin.styl"
 
 .wrap
   height 16px

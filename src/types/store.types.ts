@@ -1,16 +1,16 @@
 export interface IState {
-  singer: object,
-  songs: any[],
-  playing: boolean,
-  fullscreen: boolean,
-  playlist: any[],
-  sequencelist: any[],
-  mode: number,
-  currentIdx: number,
-  disc: object,
-  rank: object,
-  history: any,
-  favor: any
+  singer: object;
+  songs: any[];
+  playing: boolean;
+  fullscreen: boolean;
+  playlist: any[];
+  sequencelist: any[];
+  mode: number;
+  currentIdx: number;
+  disc: object;
+  rank: object;
+  history: any;
+  favor: any;
 }
 
 export enum MutationTypes {
@@ -29,5 +29,5 @@ export enum MutationTypes {
 }
 
 export enum ActionTypes {
-  SELECT_PLAY = "SELECT_PLAY"
+  SELECT_PLAY = "SELECT_PLAY",
 }

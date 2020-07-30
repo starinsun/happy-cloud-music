@@ -1,9 +1,8 @@
-import { MutationTypes } from "../utils/types";
-import { IState } from "../utils/types";
+import { IState, MutationTypes } from "../types/store.types";
 import { MutationTree } from "vuex";
 
 const mutations: MutationTree<IState> = {
-  [MutationTypes.SET_SINGER](state, singer:object) {
+  [MutationTypes.SET_SINGER](state, singer: object) {
     state.singer = singer;
   },
   [MutationTypes.SET_SINGER_SONGS](state, songs: any[]) {

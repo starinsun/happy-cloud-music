@@ -8,6 +8,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
+  name: "BaseNone",
   props: {
     title: {
       type: String,
