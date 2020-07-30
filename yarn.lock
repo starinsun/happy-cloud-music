@@ -211,6 +211,11 @@
   resolved "https://registry.npm.taobao.org/@types/lru-cache/download/@types/lru-cache-5.1.0.tgz#57f228f2b80c046b4a1bd5cac031f81f207f4f03"
   integrity sha1-V/Io8rgMBGtKG9XKwDH4HyB/TwM=
 
+"@types/lyric-parser@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.npm.taobao.org/@types/lyric-parser/download/@types/lyric-parser-1.0.2.tgz#584c624404fc30bfcd8327ad8264e43c34a2f2d8"
+  integrity sha1-WExiRAT8ML/NgyetgmTkPDSi8tg=
+
 "@types/mime@*":
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/@types/mime/download/@types/mime-2.0.3.tgz?cache=0&sync_timestamp=1595439915892&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fmime%2Fdownload%2F%40types%2Fmime-2.0.3.tgz#c893b73721db73699943bfc3653b1deb7faa4a3a"

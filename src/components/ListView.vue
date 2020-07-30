@@ -55,6 +55,7 @@
 import BaseScroll from "../components/BaseScroll.vue";
 import BaseLoading from "../components/BaseLoading.vue";
 import { singerTag } from "../utils/help";
+import { Ipos } from "../types/scroll.types";
 import {
   computed,
   ref,
@@ -69,11 +70,6 @@ interface Itouch {
   y1: number;
   y2: number;
   idx: number;
-}
-
-interface Ipos {
-  x: number;
-  y: number;
 }
 
 export default defineComponent({

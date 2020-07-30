@@ -56,6 +56,8 @@ import { getCount } from "../utils/help";
 import { getRecommendBanner, getSongList } from "../config/http.config";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { MutationTypes } from "../types/store.types";
+import { RecommendListType } from "../types/recommend.types";
 
 export default defineComponent({
   name: "Recommend",
@@ -92,11 +94,11 @@ export default defineComponent({
       if (!state.hasGotImg) scroll?.value?.refresh();
       state.hasGotImg = true;
     }
-    function selectItem(item: any) {
+    function selectItem(item: RecommendListType) {
       router.push({
-        path: `/recommend/${item.dissid}`,
+        path: `/recommend/${item.id}`,
       });
-      // store.commit(SET_DISC, item);
+      store.commit(MutationTypes.SET_DISC, item);
     }
     watch(
       () => state.playList,

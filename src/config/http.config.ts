@@ -1,5 +1,5 @@
 import { singerTag } from "../utils/help";
-import { normalise } from "../utils/function";
+import { normalise, recmmendNomarlise } from "../utils/function";
 
 const baseUrl = "http://106.15.37.245:3200/";
 
@@ -11,6 +11,13 @@ export async function getRecommendBanner() {
 export async function getSongList() {
   let res = await fetch(`${baseUrl}personalized`).then((v) => v.json());
   return res.result;
+}
+
+export async function getPlayListDetail(id: number) {
+  let res = await fetch(`${baseUrl}playlist/detail?id=${id}`).then((v) =>
+    v.json()
+  );
+  return await recmmendNomarlise(res.playlist.tracks);
 }
 
 export function getSingerList() {

@@ -1,5 +1,6 @@
 import { IState, MutationTypes } from "../types/store.types";
 import { MutationTree } from "vuex";
+import { RecommendListType } from "../types/recommend.types";
 
 const mutations: MutationTree<IState> = {
   [MutationTypes.SET_SINGER](state, singer: object) {
@@ -26,7 +27,7 @@ const mutations: MutationTree<IState> = {
   [MutationTypes.SET_CURRENT_IDX](state, idx: number) {
     state.currentIdx = idx;
   },
-  [MutationTypes.SET_DISC](state, disc: object) {
+  [MutationTypes.SET_DISC](state, disc: RecommendListType) {
     state.disc = disc;
   },
   [MutationTypes.SET_RANK](state, rank: object) {

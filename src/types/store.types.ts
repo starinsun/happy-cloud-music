@@ -1,3 +1,5 @@
+import { RecommendListType } from "./recommend.types";
+
 export interface IState {
   singer: object;
   songs: any[];
@@ -7,7 +9,7 @@ export interface IState {
   sequencelist: any[];
   mode: number;
   currentIdx: number;
-  disc: object;
+  disc: RecommendListType;
   rank: object;
   history: any;
   favor: any;

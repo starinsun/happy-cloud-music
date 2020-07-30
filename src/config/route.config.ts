@@ -1,5 +1,6 @@
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 import Recommend from "../pages/recommend.vue";
+import RecommendDetail from "../pages/recommend-detail.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -11,16 +12,17 @@ const routes: RouteRecordRaw[] = [
     name: "recommend",
     // @ts-ignore
     component: Recommend,
-    // children: [
-    //   {
-    //     path: "/recommend/user",
-    //     component: User,
-    //   },
-    //   {
-    //     path: ":id",
-    //     component: DiscDetail,
-    //   },
-    // ],
+    children: [
+      // {
+      //   path: "/recommend/user",
+      //   component: User,
+      // },
+      {
+        path: ":id",
+        // @ts-ignore
+        component: RecommendDetail,
+      },
+    ],
   },
   {
     path: "/singer",

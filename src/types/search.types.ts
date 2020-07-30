@@ -3,7 +3,7 @@ interface albumType {
   [props: string]: any;
 }
 
-interface artistType {
+export interface artistType {
   img1v1Url: string;
   name: string;
   [props: string]: any;
@@ -19,14 +19,14 @@ export interface RawListType {
 }
 
 export interface PlayListType {
-  singer?: artistType[];
-  album?: albumType;
-  interval?: number;
-  mid?: number;
-  name?: string;
-  audio?: string;
-  img?: string;
-  lyric?: string;
+  singer: artistType[];
+  album: albumType;
+  interval: number;
+  mid: number;
+  name: string;
+  audio: string;
+  img: string;
+  lyric: string;
 }
 
 export interface SearchListType {
