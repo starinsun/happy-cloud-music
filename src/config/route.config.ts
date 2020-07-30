@@ -1,6 +1,8 @@
+// @ts-nocheck
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 import Recommend from "../pages/recommend.vue";
 import RecommendDetail from "../pages/recommend-detail.vue";
+import User from "../components/User.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -10,16 +12,14 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/recommend",
     name: "recommend",
-    // @ts-ignore
     component: Recommend,
     children: [
-      // {
-      //   path: "/recommend/user",
-      //   component: User,
-      // },
+      {
+        path: "/recommend/user",
+        component: User,
+      },
       {
         path: ":id",
-        // @ts-ignore
         component: RecommendDetail,
       },
     ],
@@ -58,12 +58,12 @@ const routes: RouteRecordRaw[] = [
     path: "/search",
     name: "search",
     component: () => import("../pages/search.vue"),
-    // children: [
-    //   {
-    //     path: "/search/user",
-    //     component: User,
-    //   },
-    // ],
+    children: [
+      {
+        path: "/search/user",
+        component: User,
+      },
+    ],
   },
 ];
 

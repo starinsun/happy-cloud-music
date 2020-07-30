@@ -43,7 +43,9 @@
       ref="confirm"
       text="是否清空列表"
     ></base-confirm>
-    <router-view></router-view>
+    <transition name="slide">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -66,6 +68,7 @@ import {
 } from "vue";
 import { getHotkey } from "../config/http.config";
 import { useStore } from "vuex";
+import { ActionTypes } from "../types/store.types";
 
 export default defineComponent({
   name: "search",
@@ -99,13 +102,13 @@ export default defineComponent({
       state.query = query;
     }
     function saveSearch() {
-      store.dispatch("saveSearchHistory", state.query);
+      store.dispatch(ActionTypes.SAVE_HISTORY, state.query);
     }
     function deleteQuery(item: string) {
-      store.dispatch("deleteSearchHistory", item);
+      store.dispatch(ActionTypes.DELETE_HISTORY, item);
     }
     function clearHistory() {
-      store.dispatch("clearSearchHistory");
+      store.dispatch(ActionTypes.CLEAR_HISTORY);
     }
     function showConfirm() {
       confirm.value.onShow();
@@ -210,4 +213,11 @@ export default defineComponent({
     width: 100%
     top: 178px
     bottom: 0
+.slide-enter-active
+  transition all .5s ease
+.slide-leave-active
+  transition all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0)
+.slide-enter, .slide-leave-to
+  transform rotate(-15deg) translateX(-80px)
+  opacity 0
 </style>

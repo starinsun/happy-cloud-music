@@ -43,6 +43,7 @@ import BaseLoading from "../components/BaseLoading.vue";
 import BaseNone from "../components/BaseNone.vue";
 import { useStore } from "vuex";
 import { SearchListType } from "../types/search.types";
+import { ActionTypes } from "../types/store.types";
 
 const LIMIT = 20;
 interface IState {
@@ -92,7 +93,7 @@ export default defineComponent({
       );
     }
     function selectItem(item: any) {
-      store.dispatch("insertSong", item);
+      store.dispatch(ActionTypes.INSERT_SONG, item);
       emit("select");
     }
     function _search(key: string, page: number, limit: number) {

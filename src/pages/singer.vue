@@ -5,7 +5,9 @@
       @select="selectSinger"
       :data="singerList"
     ></list-view>
-    <router-view></router-view>
+    <transition name="slide">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -81,4 +83,11 @@ export default defineComponent({
   top 88px
   bottom 0
   width 100%
+.slide-enter-active
+  transition all .5s ease
+.slide-leave-active
+  transition all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0)
+.slide-enter, .slide-leave-to
+  transform rotate(-15deg) translateX(-80px)
+  opacity 0
 </style>

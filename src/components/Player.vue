@@ -138,7 +138,7 @@ import {
   getCurrentInstance,
   toRefs,
 } from "vue";
-import { MutationTypes } from "../types/store.types";
+import { MutationTypes, ActionTypes } from "../types/store.types";
 import BaseProgressBar from "./BaseProgressBar.vue";
 import BaseProgressCircle from "./BaseProgressCircle.vue";
 import BaseScroll from "./BaseScroll.vue";
@@ -334,8 +334,8 @@ export default {
     }
     function toggleFavor(item: PlayListType) {
       _isFavor(item)
-        ? store.dispatch("deleteFavor", item)
-        : store.dispatch("saveFavor", item);
+        ? store.dispatch(ActionTypes.DELETE_FAVOR, item)
+        : store.dispatch(ActionTypes.SAVE_FAVOR, item);
     }
     function _isFavor(item: PlayListType) {
       const idx = store.getters.favor.findIndex(

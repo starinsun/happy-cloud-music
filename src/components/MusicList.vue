@@ -111,7 +111,7 @@ export default defineComponent({
       });
     }
     function random() {
-      store.dispatch("randomPlay", { list: props.songs });
+      store.dispatch(ActionTypes.RANDOW_PLAY, { list: props.songs });
     }
     watch(
       () => playList.value,

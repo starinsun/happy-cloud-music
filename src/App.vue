@@ -3,7 +3,9 @@
   <navs />
   <router-view v-slot="{ Component }">
     <keep-alive>
-      <component :is="Component" />
+      <transition name="slide">
+        <component :is="Component" />
+      </transition>
     </keep-alive>
   </router-view>
   <player />
@@ -27,3 +29,13 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="stylus" scoped>
+.slide-enter-active
+  transition all .5s ease
+.slide-leave-active
+  transition all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0)
+.slide-enter, .slide-leave-to
+  transform translateX(-66px) !important
+  opacity 0
+</style>

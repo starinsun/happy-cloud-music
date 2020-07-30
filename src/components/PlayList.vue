@@ -6,9 +6,9 @@
           <h1 class="title">
             <i class="icon"></i>
             <span class="text">播放列表</span>
-            <span class="clear" @click="showConfirm"
-              ><i class="icon-clear"></i
-            ></span>
+            <span class="clear" @click="showConfirm">
+              <i class="icon-clear" />
+            </span>
           </h1>
         </div>
         <base-scroll
@@ -16,9 +16,8 @@
           :data="sequenceList"
           class="list-content"
         >
-          <transition-group name="list" tag="ul">
+          <transition-group name="list" tag="ul" ref="listItem">
             <li
-              ref="listItem"
               class="item"
               @click="selectItem(item, idx)"
               v-for="(item, idx) in sequenceList"
@@ -59,7 +58,7 @@ import {
 } from "vue";
 import BaseScroll from "./BaseScroll.vue";
 import BaseConfirm from "./BaseConfirm.vue";
-import { MutationTypes } from "../types/store.types";
+import { MutationTypes, ActionTypes } from "../types/store.types";
 import { useStore } from "vuex";
 import { PlayListType } from "../types/search.types";
 
@@ -106,17 +105,17 @@ export default defineComponent({
       const idx = state.sequenceList.findIndex(
         (song: PlayListType) => song.mid === cur.mid
       );
-      listContent.value.scrollToElement(listItem.value[idx], 300);
+      listContent.value.scrollToElement(listItem.value.children[idx], 300);
     }
     function deleteOne(item: PlayListType) {
-      store.dispatch("deleteSong", item);
+      store.dispatch(ActionTypes.DELETE_SONG, item);
       if (!state.playList.length) onHide();
     }
     function showConfirm() {
       confirm.value.onShow();
     }
     function clearList() {
-      store.dispatch("deleteAll");
+      store.dispatch(ActionTypes.DELETE_ALL);
       onHide();
     }
     function getFavorIcon(item: PlayListType) {
@@ -124,8 +123,8 @@ export default defineComponent({
     }
     function toggleFavor(item: PlayListType) {
       _isFavor(item)
-        ? store.dispatch("deleteFavor", item)
-        : store.dispatch("saveFavor", item);
+        ? store.dispatch(ActionTypes.DELETE_FAVOR, item)
+        : store.dispatch(ActionTypes.SAVE_FAVOR, item);
     }
     function _isFavor(item: PlayListType) {
       const idx = store.getters.favor.findIndex(
@@ -172,15 +171,6 @@ export default defineComponent({
     bottom: 0
     z-index: 200
     background-color: $grey2
-    &.list-fade-enter-active, &.list-fade-leave-active
-      transition: opacity 0.3s
-      .list-wrapper
-        transition: all 0.3s
-    &.list-fade-enter, &.list-fade-leave-to
-      opacity: 0
-      .list-wrapper
-        transform: translate3d(0, 100%, 0)
-    &.list-fade-enter
     .list-wrapper
       position: absolute
       left: 0
@@ -214,10 +204,6 @@ export default defineComponent({
           height: 40px
           padding: 0 30px 0 20px
           overflow: hidden
-          &.list-enter-active, &.list-leave-active
-            transition: all 0.1s
-          &.list-enter, &.list-leave-to
-            height: 0
           .current
             flex: 0 0 20px
             width: 20px
@@ -245,4 +231,16 @@ export default defineComponent({
         background: $black
         font-size: $font-sm
         color: $green
+  .list-fade-enter-active, .list-fade-leave-active
+    transition: opacity 0.3s
+    .list-wrapper
+      transition: all 0.3s
+  .list-fade-enter, .list-fade-leave-to
+    opacity: 0
+    .list-wrapper
+      transform: translate3d(0, 100%, 0)
+  .list-enter-active, .list-leave-active
+    transition: all 0.1s
+  .list-enter, .list-leave-to
+    height: 0
 </style>
