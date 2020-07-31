@@ -55,6 +55,7 @@ import {
   watch,
   getCurrentInstance,
   defineComponent,
+  PropType,
 } from "vue";
 import BaseScroll from "./BaseScroll.vue";
 import BaseConfirm from "./BaseConfirm.vue";
@@ -65,7 +66,41 @@ import { PlayListType } from "../types/search.types";
 export default defineComponent({
   name: "PlayList",
   components: { BaseScroll, BaseConfirm },
-  setup() {
+  props: {
+    sequenceList: {
+      type: Array as PropType<PlayListType[]>,
+      default: [],
+    },
+    currentSong: {
+      type: Object as PropType<PlayListType>,
+      default: () => ({
+        mid: 0,
+        singer: [
+          {
+            img1v1Url: "",
+            name: "",
+          },
+        ],
+        album: {
+          name: "",
+        },
+        interval: 0,
+        name: "",
+        audio: "",
+        img: "",
+        lyric: "",
+      }),
+    },
+    mode: {
+      type: Number,
+      default: 0,
+    },
+    playList: {
+      type: Array as PropType<PlayListType[]>,
+      default: [],
+    },
+  },
+  setup(props) {
     const store = useStore();
     const instance = getCurrentInstance();
     const listContent = ref();
@@ -73,43 +108,35 @@ export default defineComponent({
     const confirm = ref();
     const state = reactive({
       show: false,
-      sequenceList: store.getters.sequenceList,
-      currentSong: store.getters.currentSong,
-      mode: store.getters.mode,
-      playList: store.getters.playList,
     });
     function onShow() {
       state.show = true;
       instance?.proxy?.$nextTick(() => {
         listContent.value.refresh();
-        scrollToCurrent(state.currentSong);
+        scrollToCurrent(props.currentSong);
       });
     }
     function onHide() {
       state.show = false;
     }
     function getCurCls(item: PlayListType) {
-      if (state.currentSong.mid === item.mid) return "icon-play";
+      if (props.currentSong.mid === item.mid) return "icon-play";
       return "";
     }
     function selectItem(item: PlayListType, idx: number) {
-      if (state.mode === 2) {
-        idx = state.playList.findIndex(
-          (song: PlayListType) => song.mid === item.mid
-        );
+      if (props.mode === 2) {
+        idx = props.playList.findIndex((song) => song.mid === item.mid);
       }
       store.commit(MutationTypes.SET_CURRENT_IDX, idx);
       store.commit(MutationTypes.SET_PLAYING_STATE, true);
     }
     function scrollToCurrent(cur: PlayListType) {
-      const idx = state.sequenceList.findIndex(
-        (song: PlayListType) => song.mid === cur.mid
-      );
-      listContent.value.scrollToElement(listItem.value.children[idx], 300);
+      const idx = props.sequenceList.findIndex((song) => song.mid === cur.mid);
+      listContent.value.scrollToElement(listItem.value.$el.children[idx], 300);
     }
     function deleteOne(item: PlayListType) {
       store.dispatch(ActionTypes.DELETE_SONG, item);
-      if (!state.playList.length) onHide();
+      if (!props.playList.length) onHide();
     }
     function showConfirm() {
       confirm.value.onShow();
@@ -133,7 +160,7 @@ export default defineComponent({
       return idx > -1;
     }
     watch(
-      () => state.currentSong,
+      () => props.currentSong,
       (newS, oldS) => {
         if (!state.show || newS.mid === oldS.mid) {
           return;
@@ -219,7 +246,7 @@ export default defineComponent({
           .like
             margin-right: 15px
             font-size: $font-s
-            color: $color-theme
+            color: $green
             .icon-favorite
               color: $red
           .delete

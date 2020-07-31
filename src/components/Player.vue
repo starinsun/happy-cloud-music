@@ -117,7 +117,13 @@
         </div>
       </div>
     </transition>
-    <play-list ref="playComponent"></play-list>
+    <play-list
+      ref="playComponent"
+      :sequenceList="sequenceList"
+      :currentSong="currentSong"
+      :playList="playList"
+      :mode="mode"
+    ></play-list>
     <audio
       :src="currentSong.audio"
       ref="audio"
