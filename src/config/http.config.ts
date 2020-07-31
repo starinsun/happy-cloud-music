@@ -20,7 +20,7 @@ export async function getPlayListDetail(id: number) {
   return await recmmendNomarlise(res.playlist.tracks);
 }
 
-export function getSingerList() {
+export async function getSingerList() {
   let res = Promise.all(
     singerTag.map((item) =>
       fetch(
@@ -31,6 +31,14 @@ export function getSingerList() {
     )
   );
   return res;
+}
+
+export async function getSingerDetail(id: number) {
+  let res = await fetch(`${baseUrl}artists?id=${id}`).then((v) => v.json());
+  return {
+    hotSongs: await recmmendNomarlise(res.hotSongs),
+    artist: res.artist,
+  };
 }
 
 export async function getRankList() {

@@ -43,7 +43,7 @@ export default defineComponent({
   components: { BaseLoading },
   setup(props, { emit }) {
     function getDesc(song: PlayListType) {
-      return `${song.singer[0].name} · ${song.album.name} · ${song.name}`;
+      return `${song.singer[0].name} · ${song.name}`;
     }
     function selectItem(song: PlayListType, idx: number) {
       emit("select", song, idx);
@@ -76,7 +76,7 @@ export default defineComponent({
       margin-right: 30px
       text-align: center
       .text
-        color: $black
+        color: $white
         font-size: $font-l
     .content
       flex: 1

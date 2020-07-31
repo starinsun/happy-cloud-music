@@ -1,23 +1,24 @@
 import { RecommendListType } from "./recommend.types";
+import { PlayListType } from "./search.types";
+import { SingerType } from "./singer.types";
+import { RankType } from "./rank.types";
 
 export interface IState {
-  singer: object;
-  songs: any[];
+  singer: SingerType;
   playing: boolean;
   fullscreen: boolean;
-  playlist: any[];
-  sequencelist: any[];
+  playlist: PlayListType[];
+  sequencelist: PlayListType[];
   mode: number;
   currentIdx: number;
   disc: RecommendListType;
-  rank: object;
-  history: any;
+  rank: RankType;
+  history: PlayListType[];
   favor: any;
 }
 
 export enum MutationTypes {
   SET_SINGER = "SET_SINGER",
-  SET_SINGER_SONGS = "SET_SINGER_SONGS",
   SET_PLAYING_STATE = "SET_PLAYING_STATE",
   SET_FULL_SCREEN = "SET_FULL_SCREEN",
   SET_PLAYLIST = "SET_PLAYLIST",

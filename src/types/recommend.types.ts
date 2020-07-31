@@ -17,6 +17,7 @@ export interface RecommendRawListType {
   ar: ArtistType[];
   al: AlbumType;
   dt: number;
+  [props: string]: any;
 }
 
 export interface RecommendListType {
@@ -25,4 +26,5 @@ export interface RecommendListType {
   picUrl: string;
   playCount: number;
   copywriter: string;
+  [props: string]: any;
 }

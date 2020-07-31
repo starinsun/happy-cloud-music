@@ -232,9 +232,9 @@ export default defineComponent({
         font-size: $font-sm
         color: $green
   .list-fade-enter-active, .list-fade-leave-active
-    transition: opacity 0.3s
+    transition: opacity 0.1s
     .list-wrapper
-      transition: all 0.3s
+      transition: all 0.1s
   .list-fade-enter, .list-fade-leave-to
     opacity: 0
     .list-wrapper

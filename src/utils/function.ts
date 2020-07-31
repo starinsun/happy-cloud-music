@@ -23,12 +23,13 @@ export async function normalise(list: RawListType[]) {
     final.album = item.album;
     final.audio = arr1[idx] ? arr1[idx] : "error";
     final.lyric = arr2[idx] ? arr2[idx] : "暂无歌词";
-    final.img = "";
+    final.img = item.artists[0].img1v1Url;
     return final;
   });
 }
 
 export async function recmmendNomarlise(list: RecommendRawListType[]) {
+  list = list.slice(0, 33);
   let arr1: any[] = await Promise.all(list.map((item) => getAudioUrl(item.id)));
   let arr2: string[] = await Promise.all(list.map((item) => getLyric(item.id)));
   return list.map((item, idx) => {

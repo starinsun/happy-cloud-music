@@ -26,10 +26,12 @@ import { MutationTypes } from "../types/store.types";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import ListView from "../components/ListView.vue";
+import { SingerType } from "../types/singer.types";
+import { PlayListType } from "../types/search.types";
 
-interface Istate {
-  singerList: any[];
-  playList: any[];
+interface IState {
+  singerList: SingerType[];
+  playList: PlayListType[];
 }
 
 export default defineComponent({
@@ -40,7 +42,7 @@ export default defineComponent({
   setup() {
     const store = useStore(),
       router = useRouter();
-    const state: Istate = reactive({
+    const state = reactive<IState>({
       singerList: [],
       playList: store.getters.playList,
     });
@@ -60,10 +62,10 @@ export default defineComponent({
       singer.value.style.bottom = bottom;
       listview.value.refresh();
     }
-    function selectSinger(singer: any) {
+    function selectSinger(singer: SingerType) {
       store.commit(MutationTypes.SET_SINGER, singer);
       router.push({
-        path: `/singer/${singer.singer_mid}`,
+        path: `/singer/${singer.id}`,
       });
     }
     watch(

@@ -21,7 +21,12 @@
           </li>
         </ul>
         <ul class="rest-wrapper">
-          <div v-for="item in rest" class="rest">
+          <div
+            v-for="item in rest"
+            class="rest"
+            @click="selectItem(item)"
+            :key="item.id"
+          >
             <img
               :src="item.coverImgUrl"
               :alt="item.name"
@@ -57,11 +62,13 @@ import { getRankList } from "../config/http.config";
 import { MutationTypes } from "../types/store.types";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { PlayListType } from "../types/search.types";
+import { RankType } from "../types/rank.types";
 
 interface IState {
-  detail: any[];
-  rest: any[];
-  playList: any[];
+  detail: RankType[];
+  rest: RankType[];
+  playList: PlayListType[];
 }
 
 export default defineComponent({
@@ -72,17 +79,17 @@ export default defineComponent({
     const router = useRouter();
     const rankList = ref();
     const topList = ref();
-    const state: IState = reactive({
+    const state = reactive<IState>({
       detail: [],
       rest: [],
       playList: store.getters.playList,
     });
-    function _handlePlayList(playlist: any[]) {
+    function _handlePlayList(playlist: PlayListType[]) {
       const bottom = playlist.length > 0 ? "65px" : "";
       rankList.value.style.bottom = bottom;
       topList.value.refresh();
     }
-    function selectItem(item: any) {
+    function selectItem(item: RankType) {
       router.push({
         path: `/rank/${item.id}`,
       });

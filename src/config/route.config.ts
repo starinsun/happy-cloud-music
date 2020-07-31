@@ -3,6 +3,8 @@ import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 import Recommend from "../pages/recommend.vue";
 import RecommendDetail from "../pages/recommend-detail.vue";
 import User from "../components/User.vue";
+import SingerDetail from "../pages/singer-detail.vue";
+import RankDetail from "../pages/rank-detail.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -28,31 +30,31 @@ const routes: RouteRecordRaw[] = [
     path: "/singer",
     name: "singer",
     component: () => import("../pages/singer.vue"),
-    // children: [
-    //   {
-    //     path: "/singer/user",
-    //     component: User,
-    //   },
-    //   {
-    //     path: ":id",
-    //     component: SingerDetail,
-    //   },
-    // ],
+    children: [
+      {
+        path: "/singer/user",
+        component: User,
+      },
+      {
+        path: ":id",
+        component: SingerDetail,
+      },
+    ],
   },
   {
     path: "/rank",
     name: "rank",
     component: () => import("../pages/rank.vue"),
-    // children: [
-    //   {
-    //     path: "/rank/user",
-    //     component: User,
-    //   },
-    //   {
-    //     path: ":id",
-    //     component: RankDetail,
-    //   },
-    // ],
+    children: [
+      {
+        path: "/rank/user",
+        component: User,
+      },
+      {
+        path: ":id",
+        component: RankDetail,
+      },
+    ],
   },
   {
     path: "/search",

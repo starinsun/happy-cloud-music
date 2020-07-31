@@ -2,8 +2,11 @@ import { localFavor, localSearch } from "../utils/utils";
 import { IState } from "../types/store.types";
 
 const state: IState = {
-  singer: {},
-  songs: [],
+  singer: {
+    id: 0,
+    name: "",
+    img1v1Url: "",
+  },
   playing: false,
   fullscreen: false,
   playlist: [],
@@ -17,7 +20,11 @@ const state: IState = {
     playCount: 0,
     copywriter: "",
   },
-  rank: {},
+  rank: {
+    id: 0,
+    name: "",
+    coverImgUrl: "",
+  },
   history: localSearch(),
   favor: localFavor(),
 };

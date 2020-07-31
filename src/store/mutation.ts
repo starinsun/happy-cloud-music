@@ -1,13 +1,12 @@
 import { IState, MutationTypes } from "../types/store.types";
 import { MutationTree } from "vuex";
 import { RecommendListType } from "../types/recommend.types";
+import { SingerType } from "../types/singer.types";
+import { RankType } from "../types/rank.types";
 
 const mutations: MutationTree<IState> = {
-  [MutationTypes.SET_SINGER](state, singer: object) {
+  [MutationTypes.SET_SINGER](state, singer: SingerType) {
     state.singer = singer;
-  },
-  [MutationTypes.SET_SINGER_SONGS](state, songs: any[]) {
-    state.songs = songs;
   },
   [MutationTypes.SET_PLAYING_STATE](state, flag: boolean) {
     state.playing = flag;
@@ -30,7 +29,7 @@ const mutations: MutationTree<IState> = {
   [MutationTypes.SET_DISC](state, disc: RecommendListType) {
     state.disc = disc;
   },
-  [MutationTypes.SET_RANK](state, rank: object) {
+  [MutationTypes.SET_RANK](state, rank: RankType) {
     state.rank = rank;
   },
   [MutationTypes.SET_SEARCH_HISTORY](state, history: any) {
