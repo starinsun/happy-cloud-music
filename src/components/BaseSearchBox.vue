@@ -67,7 +67,7 @@ export default defineComponent({
     font-size: $font-m
     outline: 0
     &::placeholder
-      color: $green-dark
+      color: $green2
   .icon-dismiss
     font-size: 18px
     color: $black

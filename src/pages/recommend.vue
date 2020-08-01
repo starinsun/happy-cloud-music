@@ -9,7 +9,7 @@
               :key="banner.scm"
               class="slider-item"
             >
-              <a :href="banner.url">
+              <a :href="banner.imageUrl">
                 <img :src="banner.imageUrl" />
               </a>
             </section>
@@ -22,22 +22,26 @@
               <img
                 :src="song.picUrl"
                 :alt="song.copywriter"
-                width="133"
-                height="133"
+                width="145"
+                height="145"
               />
+              <div class="play-nums">播放:{{ getCount(song.playCount) }}</div>
             </div>
             <div class="text">
               <h1 class="desc" v-html="song.name"></h1>
-              <p class="listenNum">播放数：{{ getCount(song.playCount) }}</p>
             </div>
           </li>
         </ul>
       </div>
       <base-loading v-show="!songs.length" class="loading-container" />
     </base-scroll>
-    <transition name="slide">
-      <router-view></router-view>
-    </transition>
+    <router-view v-slot="{ Component }">
+      <transition name="slipe">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -50,6 +54,7 @@ import {
   onActivated,
   defineComponent,
   toRefs,
+  computed,
 } from "vue";
 import BaseSlider from "../components/BaseSlider.vue";
 import BaseScroll from "../components/BaseScroll.vue";
@@ -59,7 +64,14 @@ import { getRecommendBanner, getSongList } from "../config/http.config";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { MutationTypes } from "../types/store.types";
-import { RecommendListType } from "../types/recommend.types";
+import { RecommendListType, BannerType } from "../types/recommend.types";
+import { PlayListType } from "../types/search.types";
+
+interface IState {
+  banners: BannerType[];
+  songs: RecommendListType[];
+  hasGotImg: boolean;
+}
 
 export default defineComponent({
   name: "Recommend",
@@ -67,12 +79,12 @@ export default defineComponent({
   setup() {
     const router = useRouter(),
       store = useStore();
-    const state = reactive({
+    const state = reactive<IState>({
       banners: [],
       songs: [],
       hasGotImg: false,
-      playList: store.getters.playList,
     });
+    const playList = computed<PlayListType[]>(() => store.getters.playList);
     const scroll = ref();
     const recommend = ref();
     onMounted(() => {
@@ -82,12 +94,12 @@ export default defineComponent({
       getSongList().then((res) => {
         state.songs = res;
       });
-      _handlePlayList(state.playList);
+      _handlePlayList(playList.value);
     });
     onActivated(() => {
-      _handlePlayList(state.playList);
+      _handlePlayList(playList.value);
     });
-    function _handlePlayList(playlist: any) {
+    function _handlePlayList(playlist: PlayListType[]) {
       const bottom = playlist.length > 0 ? "65px" : "";
       recommend.value.style.bottom = bottom;
       scroll?.value?.refresh();
@@ -103,7 +115,7 @@ export default defineComponent({
       store.commit(MutationTypes.SET_DISC, item);
     }
     watch(
-      () => state.playList,
+      () => playList.value,
       (newV) => {
         _handlePlayList(newV);
       }
@@ -133,13 +145,14 @@ export default defineComponent({
     overflow hidden
     .songListTitle
       height 40px
-      color $green-dark
+      color $green2
       display flex
+      font-size $font-m
       justify-content center
       align-items flex-end
       &::before
         content '————'
-        color $green-dark
+        color $green2
       &::after
         content '————'
     .songList
@@ -147,10 +160,11 @@ export default defineComponent({
       grid-template-columns 1fr 1fr
       .icon,.text
         display grid
+        position relative
         justify-items  center
-        font-size 12px
+        font-size $font-sl
         margin 12px 0 0 0
-        color $green-dark
+        color $green2
         .desc
           text-overflow ellipsis
           text-align center
@@ -158,8 +172,6 @@ export default defineComponent({
           white-space nowrap
           margin-bottom 5px
           width 90%
-        .listenNum
-          color $green-dark
     .loading-container
       position: absolute
       width: 100%
@@ -177,11 +189,20 @@ export default defineComponent({
     img
       display: block
       width: 100%
-.slide-enter-active
+.play-nums
+  position absolute
+  top 0
+  right calc((50vw - 145px)/2)
+  padding 5px 2px 5px 10px
+  background $grey3
+  border-top-left-radius 20px
+  border-bottom-left-radius 20px
+  color $grey1
+.slipe-enter-active
   transition all .5s ease
-.slide-leave-active
+.slipe-leave-active
   transition all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0)
-.slide-enter, .slide-leave-to
+.slipe-enter, .slipe-leave-to
   transform rotate(-15deg) translateX(-80px)
   opacity 0
 </style>

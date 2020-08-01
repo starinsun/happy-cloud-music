@@ -5,9 +5,13 @@
       @select="selectSinger"
       :data="singerList"
     ></list-view>
-    <transition name="slide">
-      <router-view></router-view>
-    </transition>
+    <router-view v-slot="{ Component }">
+      <transition name="slide">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
   </div>
 </template>
 

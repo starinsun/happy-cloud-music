@@ -57,9 +57,9 @@ export default defineComponent({
       height: 0
     .text
       flex: 1
-      color: $color-text-l
+      color: $green
     .icon
       .icon-delete
-        font-size: $font-size-small
-        color: $color-text-d
+        font-size: $font-s
+        color: $green2
 </style>

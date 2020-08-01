@@ -38,6 +38,7 @@ import {
   reactive,
   onActivated,
   defineComponent,
+  PropType,
 } from "vue";
 import BaseScroll from "./BaseScroll.vue";
 import SongList from "./SongList.vue";
@@ -54,7 +55,7 @@ export default defineComponent({
       default: "",
     },
     songs: {
-      type: Array,
+      type: Array as PropType<PlayListType[]>,
       default: () => [],
     },
     title: {
@@ -82,12 +83,11 @@ export default defineComponent({
     const filter = ref();
     const playBtn = ref();
     const scrollData = reactive({ scrollY: 0, minTranslateY: 0 });
-    const playList = computed(() => store.getters.playList);
+    const playList = computed<PlayListType>(() => store.getters.playList);
     const bgStyle = computed(() => `background-image:url(${props.bgImage})`);
     onMounted(() => {
       scrollData.minTranslateY = -bgImg.value.clientHeight + RESERVE_HEIGHT;
       list.value.$el.style.top = `${bgImg.value.clientHeight}px`;
-      // mixin
       _handlePlayList(playList.value);
     });
     onActivated(() => {
@@ -134,7 +134,6 @@ export default defineComponent({
         } else {
           blur = Math.min(20, 20 * percent);
         }
-        //高速模糊
         filter.value.style["backdrop-filter"] = `blur(${blur}px)`;
         if (newY < scrollData.minTranslateY) {
           zidx = 10;
@@ -149,7 +148,6 @@ export default defineComponent({
         bgImg.value.style.zIndex = zidx;
         bgImg.value.style["transform"] = `scale(${scale})`;
       }
-      //不加这个会报错，有待思考
     );
     return {
       bgStyle,

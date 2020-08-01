@@ -90,7 +90,7 @@ const actions: ActionTree<IState, IState> = {
     commit(SET_SEARCH_HISTORY, clearList());
   },
 
-  [ActionTypes.DELETE_HISTORY]({ commit, state }, song) {
+  [ActionTypes.DELETE_SONG]({ commit, state }, song) {
     let playList = state.playlist.slice();
     let sequenceList = state.sequencelist.slice();
     let currentIdx = state.currentIdx;

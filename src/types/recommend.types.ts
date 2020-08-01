@@ -28,3 +28,9 @@ export interface RecommendListType {
   copywriter: string;
   [props: string]: any;
 }
+
+export interface BannerType {
+  imageUrl: string;
+  scm: string;
+  [props: string]: string;
+}

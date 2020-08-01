@@ -77,7 +77,7 @@ export default defineComponent({
   top 0
   bottom 0
   z-index 998
-  background-color $grey1
+  background-color rgba(0,0,0,0.4)
   &.confirm-enter-active
     animation confirm-fadein 0.3s
     .confirm-content
@@ -107,10 +107,10 @@ export default defineComponent({
           flex 1
           line-height 22px
           padding 10px 0
-          border-top 1px solid $green-dark
-          color $green-dark
+          border-top 1px solid $green2
+          color $green2
           &.left
-            border-right 1px solid $green-dark
+            border-right 1px solid $green2
 
 @keyframes confirm-fadein
   0%

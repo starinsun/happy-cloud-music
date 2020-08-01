@@ -128,5 +128,5 @@ export default defineComponent({
       &.active
         width 15px
         border-radius 5px
-        background $green-dark
+        background $green2
 </style>

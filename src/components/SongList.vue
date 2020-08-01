@@ -22,13 +22,13 @@
 
 <script lang="ts">
 import BaseLoading from "./BaseLoading.vue";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, PropType } from "vue";
 import { PlayListType } from "../types/search.types";
 export default defineComponent({
   name: "SongList",
   props: {
     songs: {
-      type: Array,
+      type: Array as PropType<PlayListType[]>,
       default: () => [],
     },
     rank: {
@@ -65,32 +65,34 @@ export default defineComponent({
 
 .song-list
   .item
-    display: flex
-    align-items: center
-    box-sizing: border-box
-    height: 64px
-    font-size: $font-m
+    display flex
+    align-items center
+    box-sizing border-box
+    height 64px
+    font-size $font-m
     .rank
-      flex: 0 0 25px
-      width: 25px
-      margin-right: 30px
-      text-align: center
+      flex 0 0 25px
+      width 25px
+      margin-right 30px
+      text-align center
       .text
-        color: $white
-        font-size: $font-l
+        color $white
+        font-size $font-xl
+        font-style italic
     .content
-      flex: 1
-      line-height: 20px
-      overflow: hidden
+      flex 1
+      line-height 20px
+      overflow hidden
       .name
-        text-overflow: ellipsis
-        overflow: hidden
-        white-space: nowrap
-        color: $green
+        text-overflow ellipsis
+        overflow hidden
+        white-space nowrap
+        color $green
       .desc
-        text-overflow: ellipsis
-        overflow: hidden
-        white-space: nowrap
-        margin-top: 4px
-        color: $green-dark
+        text-overflow ellipsis
+        overflow hidden
+        white-space nowrap
+        margin-top 4px
+        color $green2
+        font-size $font-sl
 </style>

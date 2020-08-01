@@ -69,7 +69,7 @@ export default defineComponent({
   props: {
     sequenceList: {
       type: Array as PropType<PlayListType[]>,
-      default: [],
+      default: () => [],
     },
     currentSong: {
       type: Object as PropType<PlayListType>,
@@ -197,13 +197,13 @@ export default defineComponent({
     top: 0
     bottom: 0
     z-index: 200
-    background-color: $grey2
+    background-color: rgba(0, 0, 0, 0.4)
     .list-wrapper
       position: absolute
       left: 0
       bottom: 0
       width: 100%
-      background-color: $grey1
+      background-color: $grey2
       .list-header
         position: relative
         padding: 20px 30px 10px 20px
@@ -213,7 +213,7 @@ export default defineComponent({
           .icon
             margin-right: 10px
             font-size: 30px
-            color: $green-dark
+            color: $green2
           .text
             flex: 1
             font-size: $font-m
@@ -221,7 +221,7 @@ export default defineComponent({
           .clear
             .icon-clear
               font-size: $font-m
-              color: $green-dark
+              color: $green2
       .list-content
         max-height: 240px
         overflow: hidden
@@ -235,14 +235,14 @@ export default defineComponent({
             flex: 0 0 20px
             width: 20px
             font-size: $font-s
-            color: $green-dark
+            color: $green2
           .text
             flex: 1
             text-overflow: ellipsis
             overflow: hidden
             white-space: nowrap
             font-size: $font-m
-            color: $green-dark
+            color: $green2
           .like
             margin-right: 15px
             font-size: $font-s

@@ -39,5 +39,5 @@ export default defineComponent({
       &.router-link-active
         .tab-link
           color $green
-          border-bottom 2px solid $green-dark
+          border-bottom 2px solid $green2
 </style>

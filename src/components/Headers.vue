@@ -40,7 +40,7 @@ export default defineComponent({
       display block
       padding 12px
       font-size 20px
-      color $green-dark
+      color $green2
   .icon
     margin-top 6px
     width 32px

@@ -26,5 +26,5 @@ export default defineComponent({
   .no-result-text
     margin-top 30px
     font-size $font-m
-    color $dark-green
+    color $green2
 </style>

@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import MusicList from "../components/MusicList.vue";
-import { reactive, onMounted, defineComponent, toRefs } from "vue";
+import { reactive, onMounted, defineComponent, toRefs, computed } from "vue";
 import { getPlayListDetail } from "../config/http.config";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
@@ -15,9 +15,6 @@ import { RecommendListType } from "../types/recommend.types";
 
 interface IState {
   discs: PlayListType[];
-  disc: RecommendListType;
-  title: string;
-  bgImage: string;
 }
 
 export default defineComponent({
@@ -28,19 +25,19 @@ export default defineComponent({
       router = useRouter();
     const state = reactive<IState>({
       discs: [],
-      disc: store.getters.disc,
-      title: store.getters.disc.name,
-      bgImage: store.getters.disc.picUrl,
     });
+    const disc = computed<RecommendListType>(() => store.getters.disc);
+    const title = computed<string>(() => disc.value.name);
+    const bgImage = computed<string>(() => disc.value.picUrl);
     onMounted(() => {
-      if (!state.disc.id) router.push("/recommend");
+      if (!disc.value.id) router.push("/recommend");
       else {
-        getPlayListDetail(state.disc.id).then((v) => {
+        getPlayListDetail(disc.value.id).then((v) => {
           state.discs = v;
         });
       }
     });
-    return { ...toRefs(state) };
+    return { ...toRefs(state), disc, title, bgImage };
   },
 });
 </script>

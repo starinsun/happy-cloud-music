@@ -1,18 +1,18 @@
 <template>
   <headers />
   <navs />
-  <router-view v-slot="{ Component }">
-    <keep-alive>
-      <transition name="slide">
+  <router-view v-slot="{ Component, route }">
+    <transition name="slide">
+      <keep-alive>
         <component :is="Component" />
-      </transition>
-    </keep-alive>
+      </keep-alive>
+    </transition>
   </router-view>
   <player />
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from "vue";
+import { defineComponent } from "vue";
 import Recommend from "./pages/recommend.vue";
 import Headers from "./components/Headers.vue";
 import Navs from "./components/Navs.vue";
@@ -21,12 +21,6 @@ import Player from "./components/Player.vue";
 export default defineComponent({
   name: "App",
   components: { Recommend, Headers, Navs, Player },
-  setup() {
-    const state = reactive({
-      Component: Recommend,
-    });
-    return { ...toRefs(state) };
-  },
 });
 </script>
 

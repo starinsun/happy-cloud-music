@@ -43,9 +43,13 @@
       ref="confirm"
       text="是否清空列表"
     ></base-confirm>
-    <transition name="slide">
-      <router-view></router-view>
-    </transition>
+    <router-view v-slot="{ Component }">
+      <transition name="slide">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -91,10 +95,12 @@ export default defineComponent({
     const state = reactive({
       hotkey: [],
       query: "",
-      history: store.getters.searchHistory ? store.getters.searchHistory : [],
-      playList: store.getters.playList,
     });
-    const shortcut = computed(() => state.hotkey.concat(state.history));
+    const shortcut = computed(() => state.hotkey.concat(history.value));
+    const history = computed(() =>
+      store.getters.searchHistory ? store.getters.searchHistory : []
+    );
+    const playList = computed(() => store.getters.playList);
     function addQuery(key: string) {
       searchBox.value.setQuery(key);
     }
@@ -127,10 +133,10 @@ export default defineComponent({
       }
     );
     onMounted(() => {
-      _handlePlayList(state.playList);
+      _handlePlayList(playList.value);
     });
     onActivated(() => {
-      _handlePlayList(state.playList);
+      _handlePlayList(playList.value);
     });
     function _handlePlayList(list: any) {
       const bottom = list.length > 0 ? "60px" : "";
@@ -140,13 +146,15 @@ export default defineComponent({
       searchScroll.value.refresh();
     }
     watch(
-      () => state.playList,
+      () => playList.value,
       (newV) => {
         _handlePlayList(newV);
       }
     );
     return {
       ...toRefs(state),
+      playList,
+      history,
       addQuery,
       searchBox,
       onQueryChange,
@@ -183,16 +191,16 @@ export default defineComponent({
         margin: 0 20px 20px 20px
         .title
           margin-bottom: 20px
-          font-size: $font-size-medium
-          color: $color-text-l
+          font-size: $font-l
+          color: $green
         .item
           display: inline-block
           padding: 5px 10px
           margin: 0 20px 10px 0
           border-radius: 6px
-          background: $color-highlight-background
-          font-size: $font-size-medium
-          color: $color-text-d
+          background: $grey2
+          font-size: $font-sl
+          color: $green2
       .search-history
         position: relative
         margin: 0 20px
@@ -200,14 +208,14 @@ export default defineComponent({
           display: flex
           align-items: center
           height: 40px
-          font-size: $font-size-medium
-          color: $color-text-l
+          font-size: $font-m
+          color: $green
           .text
             flex: 1
           .clear
             .icon-clear
-              font-size: $font-size-medium
-              color: $color-text-d
+              font-size: $font-m
+              color: $green2
   .search-result
     position: fixed
     width: 100%

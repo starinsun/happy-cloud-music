@@ -162,7 +162,7 @@ export default defineComponent({
     .name
       flex: 1
       font-size: 15px
-      color: $green-dark
+      color: $green2
       overflow: hidden
       .text
         text-overflow: ellipsis
@@ -173,4 +173,8 @@ export default defineComponent({
     width: 100%
     top: 40%
     transform: translateY(-50%)
+.suggest-list
+  >>> .wrap
+    margin 0
+    padding-bottom 10px
 </style>

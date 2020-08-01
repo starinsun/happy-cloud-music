@@ -1,7 +1,7 @@
 import { singerTag } from "../utils/help";
 import { normalise, recmmendNomarlise } from "../utils/function";
 
-const baseUrl = "http://106.15.37.245:3200/";
+const baseUrl = "https://music.api.eswang.icu/";
 
 export async function getRecommendBanner() {
   let res = await fetch(`${baseUrl}banner`).then((v) => v.json());

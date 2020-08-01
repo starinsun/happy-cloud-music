@@ -29,7 +29,7 @@ export default defineComponent({
   font-size 14px
   >div
     display inline-block
-    background-color $grey3
+    background $green
     height 100%
     width 2px
     margin-right 3px
@@ -43,7 +43,7 @@ export default defineComponent({
   >div:nth-child(5)
     animation-delay -0.2s
   span
-    color $color-theme
+    color $green
   @keyframes load
     0%,40%,100%
       transform scaleY(0.4)

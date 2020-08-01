@@ -192,7 +192,7 @@ export default defineComponent({
   width: 100%
   height: 100%
   overflow: hidden
-  background: $grey1
+  background: $black
   .list-group
     padding-bottom: 30px
     .list-group-title
@@ -200,7 +200,7 @@ export default defineComponent({
       line-height: 30px
       padding-left: 25px
       font-size: $font-m
-      color: $green-dark
+      color: $green2
       background: $grey3
     .list-group-item
       display: flex
@@ -243,8 +243,8 @@ export default defineComponent({
       line-height: 30px
       padding-left: 25px
       font-size: $font-m
-      color: $green-dark
-      background: $grey2
+      color: $green1
+      background: $grey3
   .loading-container
     position: absolute
     width: 100%

@@ -30,7 +30,11 @@
               </div>
             </div>
           </div>
-          <base-scroll class="middle-r" ref="lyricList" :data="lyric?.lines">
+          <base-scroll
+            class="middle-r"
+            ref="lyricList"
+            :data="lyric && lyric.lines"
+          >
             <div class="lyric-wrapper">
               <div v-if="lyric">
                 <p
@@ -474,7 +478,7 @@ export default {
           display: block
           padding: 9px
           font-size: $font-xl
-          color: $green-dark
+          color: $green2
           transform: rotate(-90deg)
       .title
         width: 70%
@@ -538,7 +542,7 @@ export default {
             height: 20px
             line-height: 20px
             font-size: $font-m
-            color: $green-dark
+            color: $green2
       .middle-r
         display: inline-block
         vertical-align: top
@@ -555,7 +559,7 @@ export default {
             color: $green
             font-size: $font-m
             &.current
-              color: $green-dark
+              color: $green2
           .pure-music
             padding-top: 50%
             line-height: 32px
@@ -605,7 +609,7 @@ export default {
           flex: 1
           color: $green
           &.disable
-            color: $green-dark
+            color: $green2
           i
             font-size: 30px
         .i-left
@@ -676,14 +680,14 @@ export default {
         overflow: hidden
         white-space: nowrap
         font-size: $font-s
-        color: $green-dark
+        color: $green2
     .control
       flex: 0 0 30px
       width: 30px
       padding: 0 10px
       .icon-play-mini, .icon-pause-mini, .icon-playlist
         font-size: 30px
-        color: $green-dark
+        color: $green2
       .icon-mini
         font-size: 32px
         position: absolute

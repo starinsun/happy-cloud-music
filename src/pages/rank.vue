@@ -41,9 +41,13 @@
         <base-loading />
       </div>
     </base-scroll>
-    <transition name="slide">
-      <router-view></router-view>
-    </transition>
+    <router-view v-slot="{ Component }">
+      <transition name="slide">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -146,13 +150,14 @@ export default defineComponent({
         height 100px
         overflow hidden
         background $black
-        color $green-dark
+        color $green2
         font-size $font-s
         .song
           text-overflow ellipsis
           overflow hidden
           white-space nowrap
           line-height 26px
+          font-size $font-sl
     .loading-container
       position absolute
       width 100%
