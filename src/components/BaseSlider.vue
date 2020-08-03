@@ -58,7 +58,6 @@ export default defineComponent({
         children[i].classList.add("slider-item");
         children[i].style.width = width + "px";
       }
-      //FIXME:这里留出了左右两边的DOM宽度，如3个图片，最终是5个宽度
       if (!isRest) {
         sliderGroup.value.style.width = width * (children.length + 2) + "px";
       } else {

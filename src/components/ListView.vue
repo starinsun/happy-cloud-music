@@ -12,12 +12,21 @@
         <h2 class="list-group-title">{{ item.name }}</h2>
         <ul>
           <li
-            v-for="item in data[idx]"
+            v-for="(item, i) in data[idx]"
             :key="item.singer_id"
             class="list-group-item"
             @click="selectItem(item)"
           >
-            <img :src="item.picUrl" class="avatar" />
+            <img
+              :data-src="item.picUrl"
+              class="avatar"
+              :ref="
+                (el) => {
+                  if (idx <= 1) picImg[i + 30 * idx] = el;
+                  else picImg[i + 30 + (idx - 1) * 15] = el;
+                }
+              "
+            />
             <span class="name">{{ item.name }}</span>
           </li>
         </ul>
@@ -86,6 +95,7 @@ export default defineComponent({
     const listview = ref();
     const listgroup = ref();
     const listfixed = ref();
+    const picImg = ref([]);
     const state = reactive({
       scrollY: -1,
       currentIdx: 0,
@@ -138,15 +148,26 @@ export default defineComponent({
     function selectItem(item: any) {
       emit("select", item);
     }
+    const observer = new IntersectionObserver((changes) => {
+      for (let i = 0, len = changes.length; i < len; i++) {
+        let change = changes[i];
+        if (change.isIntersecting) {
+          const imgElement = change.target;
+          // @ts-ignore
+          imgElement.src = imgElement.getAttribute("data-src");
+          observer.unobserve(imgElement);
+        }
+      }
+    });
     watch(
       () => props.data,
       () => {
         instance?.proxy?.$nextTick(() => {
           _calculateHeight();
+          let img = picImg.value;
+          console.log(img);
+          img.map((item) => observer.observe(item));
         });
-      },
-      {
-        immediate: true,
       }
     );
     watch(
@@ -168,6 +189,7 @@ export default defineComponent({
     );
     return {
       ...toRefs(state),
+      picImg,
       singerTag,
       tagList,
       listview,
